@@ -23,11 +23,34 @@
             border-radius: 12px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 450px; /* 限制最大宽度 */
+            max-width: 450px;
         }
 
-        h1 { margin-top: 0; color: #2c3e50; font-size: 24px; text-align: center; }
-        .abbr { font-size: 14px; color: #666; text-align: center; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;}
+        /* 调整标题区域的样式 */
+        .header-section {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        h1 { 
+            margin: 0; 
+            color: #2c3e50; 
+            font-size: 26px; 
+        }
+
+        .subtitle { 
+            font-size: 13px; 
+            color: #7f8c8d; 
+            margin: 5px 0 0 0; 
+        }
+
+        .desc-text {
+            font-size: 12px;
+            color: #95a5a6;
+            margin-top: 2px;
+        }
 
         label { font-weight: bold; color: #34495e; font-size: 14px; }
         input {
@@ -50,27 +73,29 @@
         .reset-btn { background-color: #95a5a6; color: white; }
         .reset-btn:hover { background-color: #7f8c8d; }
 
-        #result { padding: 15px; border-radius: 6px; background: #f8f9fa; font-weight: bold; min-height: 50px; }
-        .disclaimer { color: #7f8c8d; font-size: 12px; margin-top: 20px; font-style: italic; }
+        #result { padding: 15px; border-radius: 6px; background: #f8f9fa; font-weight: bold; min-height: 50px; margin-top: 15px; }
+        .disclaimer { color: #7f8c8d; font-size: 12px; margin-top: 20px; font-style: italic; line-height: 1.4; }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>AAMB Score Calculator</h1>
-        <p class="abbr">
-    <strong>AAMB:</strong> Age, Age at Menarche & Menopause, and BMI
-</p>
+        <div class="header-section">
+            <h1>AAMB Score Calculator</h1>
+            <p class="subtitle">(AAMB: Age, Age at Menarche & Menopause, and BMI)</p>
+            <p class="desc-text">Designed for postmenopausal Asian women to assess the necessity of DXA screening.</p>
+        </div>
+
         <label>Age (40–65 years):</label>
         <input type="number" id="age" placeholder="e.g. 52">
 
-        <label>Age at Menarche (8–18 years):</label>
+        <label>Age at Menarche (8–20 years):</label>
         <input type="number" id="menarche" placeholder="e.g. 13">
 
         <label>Age at Menopause (35–60 years):</label>
         <input type="number" id="menopause" placeholder="e.g. 50">
 
-        <label>BMI (15–40 kg/m²):</label>
+        <label>BMI (15–50 kg/m²):</label>
         <input type="number" id="bmi" step="0.1" placeholder="e.g. 24.5">
 
         <div class="btn-group">
@@ -82,8 +107,8 @@
         <p id="result">Please enter patient data to calculate.</p>
 
         <p class="disclaimer">
-            *This tool is a screening aid and not a diagnostic replacement for DXA. <br>
-             Author: Cheng-Wei Kang · Initial Release: 2024.04.02 · Ver: 1.0
+            *This tool is a screening aid and not a diagnostic replacement for DXA.<br>
+            Author: Cheng-Wei Kang · Initial Release: 2024.04.02 · Ver: 1.0
         </p>
     </div>
 
@@ -102,7 +127,7 @@
             }
             if (age < 40 || age > 65 || menarche < 8 || menarche > 20 || 
                 menopause < 35 || menopause > 60 || bmi < 15 || bmi > 50) {
-                alert("Please ensure all inputs are within the clinically reasonable range specified."); return;
+                alert("Please ensure all inputs are within the clinically reasonable range."); return;
             }
 
             var LP = 2.1186 + (0.1591 * age) - (0.1602 * menopause) + (0.1760 * menarche) - (0.1646 * bmi);
