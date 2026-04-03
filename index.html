@@ -26,7 +26,6 @@
             max-width: 450px;
         }
 
-        /* 调整标题区域的样式 */
         .header-section {
             text-align: center;
             margin-bottom: 25px;
@@ -34,16 +33,16 @@
             padding-bottom: 15px;
         }
 
-        h1 { 
-            margin: 0; 
-            color: #2c3e50; 
-            font-size: 26px; 
+        h1 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 26px;
         }
 
-        .subtitle { 
-            font-size: 13px; 
-            color: #7f8c8d; 
-            margin: 5px 0 0 0; 
+        .subtitle {
+            font-size: 13px;
+            color: #7f8c8d;
+            margin: 5px 0 0 0;
         }
 
         .desc-text {
@@ -52,7 +51,12 @@
             margin-top: 2px;
         }
 
-        label { font-weight: bold; color: #34495e; font-size: 14px; }
+        label {
+            font-weight: bold;
+            color: #34495e;
+            font-size: 14px;
+        }
+
         input {
             width: 100%;
             padding: 12px;
@@ -63,92 +67,241 @@
             font-size: 16px;
         }
 
-        .btn-group { display: flex; gap: 10px; margin-top: 10px; }
-        button {
-            flex: 1; padding: 12px; border: none; border-radius: 6px;
-            cursor: pointer; font-size: 16px; font-weight: bold;
+        .helper-text {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: -10px;
+            margin-bottom: 15px;
         }
-        .calc-btn { background-color: #2c7be5; color: white; }
-        .calc-btn:hover { background-color: #1a5fd0; }
-        .reset-btn { background-color: #95a5a6; color: white; }
-        .reset-btn:hover { background-color: #7f8c8d; }
 
-        #result { padding: 15px; border-radius: 6px; background: #f8f9fa; font-weight: bold; min-height: 50px; margin-top: 15px; }
-        .disclaimer { color: #7f8c8d; font-size: 12px; margin-top: 20px; font-style: italic; line-height: 1.4; }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .calc-btn {
+            background-color: #2c7be5;
+            color: white;
+        }
+
+        .calc-btn:hover {
+            background-color: #1a5fd0;
+        }
+
+        .reset-btn {
+            background-color: #95a5a6;
+            color: white;
+        }
+
+        .reset-btn:hover {
+            background-color: #7f8c8d;
+        }
+
+        #result {
+            padding: 18px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            min-height: 110px;
+            margin-top: 15px;
+            line-height: 1.65;
+            border-left: 6px solid #cfd8dc;
+        }
+
+        .result-card-low {
+            background: #f3faf5;
+            border-left-color: #27ae60;
+        }
+
+        .result-card-intermediate {
+            background: #fff8ef;
+            border-left-color: #f39c12;
+        }
+
+        .result-card-high {
+            background: #fdf2f2;
+            border-left-color: #c0392b;
+        }
+
+        .result-card-default {
+            background: #f8f9fa;
+            border-left-color: #cfd8dc;
+        }
+
+        .result-section-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+        }
+
+        .result-bmi {
+            font-size: 15px;
+            color: #2c3e50;
+            margin-bottom: 6px;
+        }
+
+        .result-prob {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2d3d;
+            margin-bottom: 10px;
+        }
+
+        .result-profile {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .profile-low { color: #1e8449; }
+        .profile-intermediate { color: #d68910; }
+        .profile-high { color: #b03a2e; }
+
+        .result-text {
+            font-size: 15px;
+            color: #2f3640;
+        }
+
+        .disclaimer {
+            color: #7f8c8d;
+            font-size: 12px;
+            margin-top: 20px;
+            font-style: italic;
+            line-height: 1.4;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="header-section">
-            <h1>AAMB Score Calculator</h1>
-            <p class="subtitle">(AAMB: Age, Age at Menarche & Menopause, and BMI)</p>
-            <p class="desc-text">Designed for postmenopausal Asian women to assess the necessity of DXA screening</p>
-        </div>
+<div class="container">
 
-        <label>Age (48–65 years):</label>
-        <input type="number" id="age" placeholder="e.g. 52">
-
-        <label>Age at Menarche (8–19 years):</label>
-        <input type="number" id="menarche" placeholder="e.g. 13">
-
-        <label>Age at Menopause (37–60 years):</label>
-        <input type="number" id="menopause" placeholder="e.g. 50">
-
-        <label>BMI (15–40 kg/m²):</label>
-        <input type="number" id="bmi" step="0.1" placeholder="e.g. 24.5">
-
-        <div class="btn-group">
-            <button class="calc-btn" onclick="calculateRisk()">Calculate Risk</button>
-            <button class="reset-btn" onclick="resetForm()">Reset</button>
-        </div>
-
-        <h3>Result:</h3>
-        <p id="result">Please enter patient data to calculate.</p>
-
-        <p class="disclaimer">
-            *This tool is a screening aid and not a diagnostic replacement for DXA.<br>
-            Author: Cheng-Wei Kang · Initial Release: 2024.04.02 · Ver: 1.0
-        </p>
+    <div class="header-section">
+        <h1>AAMB Score Calculator</h1>
+        <p class="subtitle">(AAMB: Age, Age at Menarche & Menopause, and BMI)</p>
+        <p class="desc-text">Designed for postmenopausal Asian women to assess the necessity of DXA screening</p>
     </div>
 
-    <script>
-        function calculateRisk() {
-            var age = parseFloat(document.getElementById("age").value);
-            var menarche = parseFloat(document.getElementById("menarche").value);
-            var menopause = parseFloat(document.getElementById("menopause").value);
-            var bmi = parseFloat(document.getElementById("bmi").value);
+    <label>Age (48–65 years):</label>
+    <input type="number" id="age" placeholder="e.g. 52">
 
-            var resultElement = document.getElementById("result");
+    <label>Age at Menarche (8–19 years):</label>
+    <input type="number" id="menarche" placeholder="e.g. 13">
 
-            // 输入校验逻辑
-            if (isNaN(age) || isNaN(menarche) || isNaN(menopause) || isNaN(bmi)) {
-                alert("Please enter valid numbers in all fields."); return;
-            }
-            if (age < 48 || age > 65 || menarche < 8 || menarche > 19 || 
-                menopause < 37 || menopause > 60 || bmi < 15 || bmi > 40) {
-                alert("Please ensure all inputs are within the clinically reasonable range."); return;
-            }
+    <label>Age at Menopause (37–60 years):</label>
+    <input type="number" id="menopause" placeholder="e.g. 50">
 
-            var LP = 2.1186 + (0.1591 * age) - (0.1602 * menopause) + (0.1760 * menarche) - (0.1646 * bmi);
-            var risk = 1 / (1 + Math.exp(-LP));
-            var riskPercent = (risk * 100).toFixed(1);
+    <label>Weight (kg):</label>
+    <input type="number" id="weight" step="0.1" placeholder="e.g. 60.0">
 
-            if (risk < 0.50) {
-                resultElement.innerHTML = "<span style='color:#27ae60'>Low Risk (" + riskPercent + "%):</span> Lower probability of low BMD. Routine clinical follow-up suggested.";
-            } else if (risk < 0.75) {
-                resultElement.innerHTML = "<span style='color:#f39c12'>Intermediate Risk (" + riskPercent + "%):</span> Interpret with clinical judgment. Consider DXA if risk factors persist.";
-            } else {
-                resultElement.innerHTML = "<span style='color:#c0392b'>High Risk (" + riskPercent + "%):</span> DXA referral should be prioritized.";
-            }
-        }
+    <label>Height (cm):</label>
+    <input type="number" id="height" step="0.1" placeholder="e.g. 158.0">
+    <p class="helper-text">BMI will be calculated automatically from weight and height.</p>
 
-        function resetForm() {
-            ["age", "menarche", "menopause", "bmi"].forEach(id => document.getElementById(id).value = "");
-            document.getElementById("result").innerText = "Please enter patient data to calculate.";
-        }
-    </script>
+    <div class="btn-group">
+        <button class="calc-btn" onclick="calculateRisk()">Calculate Risk</button>
+        <button class="reset-btn" onclick="resetForm()">Reset</button>
+    </div>
+
+    <h3>Result:</h3>
+    <div id="result" class="result-card-default">
+        Please enter patient data to calculate.
+    </div>
+
+    <p class="disclaimer">
+        *This tool is a screening aid and not a diagnostic replacement for DXA.<br>
+        Author: Cheng-Wei Kang · Initial Release: 2024.04.02 · Ver: 1.0
+    </p>
+
+</div>
+
+<script>
+function calculateRisk() {
+
+    var age = parseFloat(document.getElementById("age").value);
+    var menarche = parseFloat(document.getElementById("menarche").value);
+    var menopause = parseFloat(document.getElementById("menopause").value);
+    var weight = parseFloat(document.getElementById("weight").value);
+    var height = parseFloat(document.getElementById("height").value);
+
+    var resultElement = document.getElementById("result");
+
+    if (isNaN(age) || isNaN(menarche) || isNaN(menopause) || isNaN(weight) || isNaN(height)) {
+        alert("Please enter valid numbers in all fields.");
+        return;
+    }
+
+    if (age < 48 || age > 65 || menarche < 8 || menarche > 19 ||
+        menopause < 37 || menopause > 60 || weight <= 0 || height <= 0) {
+        alert("Please ensure all inputs are within the clinically reasonable range.");
+        return;
+    }
+
+    var height_m = height / 100;
+    var bmi = weight / (height_m * height_m);
+
+    if (bmi < 15 || bmi > 40) {
+        alert("Calculated BMI is outside supported range (15–40 kg/m²).");
+        return;
+    }
+
+    var LP = 2.1186 + 0.1591*age - 0.1602*menopause + 0.1760*menarche - 0.1646*bmi;
+    var risk = 1 / (1 + Math.exp(-LP));
+
+    var riskPercent = (risk * 100).toFixed(1);
+    var bmiText = bmi.toFixed(1);
+
+    if (risk < 0.50) {
+        resultElement.className = "result-card-low";
+        resultElement.innerHTML =
+            "<div class='result-section-title'>Clinical interpretation</div>" +
+            "<div class='result-bmi'>BMI (calculated): <strong>" + bmiText + " kg/m²</strong></div>" +
+            "<div class='result-prob'>Estimated probability of low BMD: " + riskPercent + "%</div>" +
+            "<div class='result-profile profile-low'>This corresponds to a lower-risk profile for low BMD.</div>" +
+            "<div class='result-text'>DXA referral may be considered based on clinical judgment.</div>";
+
+    } else if (risk < 0.75) {
+        resultElement.className = "result-card-intermediate";
+        resultElement.innerHTML =
+            "<div class='result-section-title'>Clinical interpretation</div>" +
+            "<div class='result-bmi'>BMI (calculated): <strong>" + bmiText + " kg/m²</strong></div>" +
+            "<div class='result-prob'>Estimated probability of low BMD: " + riskPercent + "%</div>" +
+            "<div class='result-profile profile-intermediate'>This corresponds to an intermediate-risk profile for low BMD.</div>" +
+            "<div class='result-text'>Consider DXA referral if clinically indicated.</div>";
+
+    } else {
+        resultElement.className = "result-card-high";
+        resultElement.innerHTML =
+            "<div class='result-section-title'>Clinical interpretation</div>" +
+            "<div class='result-bmi'>BMI (calculated): <strong>" + bmiText + " kg/m²</strong></div>" +
+            "<div class='result-prob'>Estimated probability of low BMD: " + riskPercent + "%</div>" +
+            "<div class='result-profile profile-high'>This corresponds to a high-risk profile for low BMD.</div>" +
+            "<div class='result-text'>DXA referral may be prioritised.</div>";
+    }
+}
+
+function resetForm() {
+    ["age","menarche","menopause","weight","height"].forEach(id => {
+        document.getElementById(id).value = "";
+    });
+
+    var resultElement = document.getElementById("result");
+    resultElement.className = "result-card-default";
+    resultElement.innerText = "Please enter patient data to calculate.";
+}
+</script>
+
 </body>
 </html>
- 
-  
