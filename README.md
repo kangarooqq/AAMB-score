@@ -1,6 +1,6 @@
 # AAMB Score Calculator
 
-A simple web-based calculator for estimating the probability of low bone mineral density (BMD) in postmenopausal women.
+A simple web-based calculator for estimating the probability of low bone mineral density (BMD) in Asian postmenopausal women.
 
 ---
 
