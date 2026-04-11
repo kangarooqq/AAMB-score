@@ -116,15 +116,6 @@ This tool is intended for **research and educational purposes only**.
 
 ---
 
-## 👨‍⚕️ Author
-
-**Cheng-Wei Kang, MD, PhD**  
-Department of Orthopaedics  
-The Second Hospital of Shandong University  
-Jinan, China  
-
----
-
 ## 📄 License
 
 This project is open-source and intended to promote transparent and reproducible research.
